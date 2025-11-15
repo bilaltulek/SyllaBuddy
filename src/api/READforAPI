@@ -1,0 +1,29 @@
+The api class has 4 functions you need to know about
+
+----------------------------------------------------------------
+@app.route('/syllabi', methods=['GET']) needs no input you call this and get a list of the syllabi
+including size, id and name
+----------------------------------------------------------------
+@app.route('/syllabus/<int:syllabus_id>', methods=['GET']) query for 1 pdf, returns json data. NEEDS id of pdf
+as argument
+----------------------------------------------------------------
+@app.route('/uploadPdf', methods=['POST'])
+to give an example of how to implement this
+<form action="/uploadPdf" method="POST" enctype="multipart/form-data">
+        <label for="fileInput">Choose PDF File:</label><br><br>
+        <input type="file" id="fileInput" name="file" accept=".pdf" required>
+        <br><br>
+        <input type="submit" value="Upload PDF">
+</form>
+as you can see all you need to do is provide the id and name and my db manager will store it as a byte string
+----------------------------------------------------------------
+@app.route('/displayPDF/<pdfName>', methods=['GET'])
+this actually returns the pdf file as a byte string buffer
+all you need to pass as an argument is the pdfname
+an example of how to implement
+<iframe
+        src="/displayPDF/{{ pdf_filename }}"
+        class="pdf-viewer"
+        title="Embedded PDF Document">
+ </iframe>
+ ----------------------------------------------------------------

@@ -1,0 +1,48 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Main Content</title>
+</head>
+<body>
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="color: {{ 'green' if 'success' in category else 'blue' }}; border: 1px solid;">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h1>Welcome back, {{ username }}!</h1>
+    <p>This is your main application dashboard.</p>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('upload_page') }}">Upload a New PDF</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <h2>Available Syllabi</h2>
+    {% if syllabi %}
+        <ul>
+        {% for syllabus in syllabi %}
+            <li>
+                <!-- Link to the HTML page with the embedded viewer -->
+                <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}">
+                    {{ syllabus.name }}
+                </a>
+                (ID: {{ syllabus.id }})
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No syllabi found in the database.</p>
+    {% endif %}
+
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!-- templates/displaypdf.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded PDF Viewer</title>
+    <style>
+        .pdf-viewer {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Viewing Document: {{ pdf_filename }}</h1>
+
+    <!--
+      The 'src' points to the route that returns the raw PDF bytes.
+      The browser automatically renders these bytes inside the frame.
+    -->
+    <iframe
+        src="/displayPDF/{{ pdf_filename }}"
+        class="pdf-viewer"
+        title="Embedded PDF Document">
+        <!-- Fallback for old browsers -->
+        Your browser does not support iframes.
+    </iframe>
+
+    <p>You can also <a href="/displayPDF/{{ pdf_filename }}">download the PDF directly</a>.</p>
+
+</body>
+</html>
+
