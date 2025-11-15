@@ -12,7 +12,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__, template_folder= '../templates')
 CORS(app)
 app.secret_key = 'a_simple_secret_key_for_poc'
-DATABASE = '/home/johnmadden/PycharmProjects/protoAPI/src/db/syllabusDB'
+DATABASE = '../db/syllabusDB'
 TableNameSyllabus = 'syllabusFiles3'
 TableNameUsers = 'usersTable'
 
@@ -119,7 +119,7 @@ def login():
             flash('Invalid credentials. Try "admin" and "password123".', 'error')
 
 
-    return render_template('login.html')
+    return render_template('login2.html')
 @app.route('/logout')
 def logout():
 
@@ -218,7 +218,9 @@ def upload_page():
 def displayAPDF(pdfName):
     db = getSyllabus_db()
     return render_template('displaypdf.html', pdf_filename=pdfName)
-
+#@app.route('/login2')
+#def login2():
+#    return render_template('login2.html')
 
 
 
