@@ -119,6 +119,13 @@ def parsing(pdf_data: bytes):
     events = PdfContents(**events_data)
     #print(events.model_dump_json(indent=2))
 
+    if temp_file_path and os.path.exists(temp_file_path):
+        try:
+            os.remove(temp_file_path)
+            print(f"Cleaned up temporary file: {temp_file_path}")
+        except Exception as e:
+            print(f"Could not delete temp file: {e}")
+
     # Return the events into a JSON style
     return events.model_dump_json(indent=2)
 
@@ -138,5 +145,4 @@ if __name__ == "__main__":
     # Save to file for inspection
     with open("test_extraction_output.json", "w") as f:
         json.dump(result, f, indent=2)
-    print("\n✓ Output saved to: test_extraction_output.json")
     '''
