@@ -1,82 +1,96 @@
 /* ---------- GLOBAL ---------- */
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f6f8;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
 }
 
-/* ---------- NAVIGATION BAR ---------- */
+/* ---------- NAV BAR (MATCHING THE FIRST PAGE) ---------- */
 
 .navbar {
-    background: #2c74b3;
-    color: white;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #4a86b8;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  width: 35px;
+  height: 35px;
 }
 
-.logo-icon {
-    width: 34px;
-    height: 34px;
-    margin-right: 8px;
+.brand {
+  font-size: 26px;
+  font-weight: bold;
 }
 
-.logo-text {
-    font-size: 22px;
-    font-weight: bold;
+/* Center menu links */
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.nav-center a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 14px;
-    border-radius: 20px;
+.nav-center a.active,
+.nav-center a:hover {
+  background-color: #aac3dd;
+  color: #1f3f5b;
 }
 
-.nav-links a.active {
-    background: #d0e6f9;
-    color: #2c74b3;
+/* Icons */
+.icon {
+  height: 20px;
 }
 
-/* ---------- PROFILE ---------- */
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Profile Right Section */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.pfp {
-    width: 40px;
-    height: 40px;
-    background: #89b4dc;
-    border-radius: 50%;
+.profile-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #aac3dd;
+  border-radius: 50%;
 }
 
-.user-info {
-    font-size: 14px;
-    text-align: right;
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: bold;
+}
+
+.profile-email {
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 /* ---------- PAGE TITLE ---------- */
-
 .page-title {
     padding: 20px 30px;
 }
