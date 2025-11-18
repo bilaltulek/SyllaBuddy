@@ -1,5 +1,6 @@
 import sqlite3
 import fitz
+import pymupdf
 import os
 import io
 from sqlDatabase import dbManager
