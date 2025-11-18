@@ -10,12 +10,12 @@ body {
 /* ---------- NAVIGATION BAR ---------- */
 
 .navbar {
-    background: #2c74b3;
-    color: white;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #4a86b8;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
