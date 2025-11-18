@@ -5,52 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SyllabusBuddy – History</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='/assets/styles.css') }}" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <!-- ░░░ TOP NAV BAR ░░░ -->
+    <!-- ░░░ NAVIGATION BAR (MATCHING INDEX #1) ░░░ -->
     <nav class="navbar">
-        <div class="logo">
-            <img src="../static/assets/logo.svg" alt="logo" class="logo-icon">
-            <span class="logo-text">SyllaBuddy</span>
+        <div class="nav-left">
+            <img src="logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Upload</a></li>
-            <li><a class="active" href="#">History</a></li>
-            <li><a href="#">Settings</a></li>
+        <ul class="nav-center">
+            <a href="#"><img src="home.svg" class="icon"> Home</a>
+            <a href="#"><img src="syllabi.svg" class="icon"> Upload</a>
+            <a href="#" class="active"><img src="history.svg" class="icon"> History</a>
+            <a href="#"><img src="settings.svg" class="icon"> Settings</a>
         </ul>
 
-        <div class="profile">
-            <div class="pfp"></div>
-            <span class="user-info">John Doe<br><small>JohnDoe123@gmail.com</small></span>
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">John Doe</span>
+                <span class="profile-email">JohnDoe123@gmail.com</span>
+            </div>
         </div>
     </nav>
 
-    <!-- ░░░ PAGE TITLE ░░░ -->
+    <!-- PAGE TITLE -->
     <section class="page-title">
         <h2>Syllabus Upload History</h2>
     </section>
 
-    <!-- ░░░ HISTORY LIST ░░░ -->
-    {% for syllabus in syllabi %}
-        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
-            <div class="card">
+    <!-- HISTORY LIST -->
+    <section id="historyList" class="history-list">
+        <!-- JS inserts items here -->
+    </section>
 
-
-
-                <div class="meta">
-                    <strong>{{ syllabus.name }}</strong><br>
-                    ID: {{ syllabus.id }}
-                </div>
-            </div>
-        </a>
-    {% endfor %}
-
-
-    <script src="../static/assets/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
