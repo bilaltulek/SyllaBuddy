@@ -119,7 +119,7 @@ def login():
             flash('Invalid credentials. Try "admin" and "password123".', 'error')
 
 
-    return render_template('login2.html')
+    return render_template('Login2.html')
 @app.route('/logout')
 def logout():
 
@@ -216,12 +216,23 @@ def upload_page():
     return render_template('uploads.html')
 @app.route('/displayAPDF/<pdfName>')
 def displayAPDF(pdfName):
-    db = getSyllabus_db()
+
     return render_template('displaypdf.html', pdf_filename=pdfName)
 #@app.route('/login2')
 #def login2():
 #    return render_template('login2.html')
-
+@app.route('/syllabiHTML')
+def syllabi_page():
+    db = getSyllabus_db()
+    syllabi = db.displayAll()
+    if syllabi is None:
+        syllabi = []
+    syllabi_list = [
+        {'id': row[0] if isinstance(row, tuple) else row,
+         'name': row[1] if isinstance(row, tuple) else row}
+        for row in syllabi
+    ]
+    return render_template('syllabi.html',syllabi = syllabi_list)
 
 
 
