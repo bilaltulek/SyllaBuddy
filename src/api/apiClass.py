@@ -1,4 +1,5 @@
 import sqlite3
+import fitz
 import os
 import io
 from sqlDatabase import dbManager
@@ -9,7 +10,7 @@ from flask import render_template, flash
 from flask import Flask, send_file
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
-app = Flask(__name__, template_folder= '../templates')
+app = Flask(__name__, template_folder= '../templates', static_folder='../static')
 CORS(app)
 app.secret_key = 'a_simple_secret_key_for_poc'
 DATABASE = '../db/syllabusDB'
@@ -71,7 +72,7 @@ def dashboard():
     db = getSyllabus_db()
     syllabi = db.displayAll()
     if syllabi is None:
-        syllabi = []
+            syllabi = []
 
 
     syllabi_list = [
@@ -234,6 +235,26 @@ def syllabi_page():
     ]
     return render_template('syllabi.html',syllabi = syllabi_list)
 
+
+
+
+
+@app.route('/thumbnail/<pdfName>')
+def get_thumbnail(pdfName):
+    db = getSyllabus_db()
+
+    pdf_data = db.retrievePDF(pdfName)
+
+    doc = fitz.open("pdf", pdf_data)
+
+    page = doc.load_page(0)
+
+    pix = page.get_pixmap(matrix=fitz.Matrix(0.5, 0.5))
+
+    output = io.BytesIO(pix.tobytes("png"))
+    output.seek(0)
+
+    return send_file(output, mimetype='image/png')
 
 
 

@@ -5,7 +5,7 @@
     <title>Dashboard - Main Content</title>
 </head>
 <body>
-    <!-- Display flash messages -->
+
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
@@ -21,17 +21,19 @@
 
     <nav>
         <ul>
-            <li><a href="{{ url_for('upload_page') }}">Upload a New PDF</a></li>
+            <!--<li><a href="{{ url_for('upload_page') }}">Upload a New PDF</a></li>-->
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            <li><a href="{{ url_for('syllabi_page') }}">Upload and view Syllabus</a></li>
         </ul>
     </nav>
+
 
     <h2>Available Syllabi</h2>
     {% if syllabi %}
         <ul>
         {% for syllabus in syllabi %}
             <li>
-                <!-- Link to the HTML page with the embedded viewer -->
+
                 <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}">
                     {{ syllabus.name }}
                 </a>

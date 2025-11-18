@@ -4,21 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Syllabi Page</title>
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='/assets/styles.css') }}">
 </head>
 <body>
  <!-- Navigation Bar -->
      <nav class="navbar">
         <div class="nav-left">
-            <img src="logo.svg" alt="Logo" class="logo">
+            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
             <span class="brand">SyllaBuddy</span>
         </div>
 
         <ul class="nav-center">
-            <a href="#"><img src="home.svg" class="icon"> Home</a>
-    <a href="#"><img src="syllabi.svg" class="icon"> Syllabi</a>
-    <a href="#"><img src="calendar.svg" class="icon"> Calendar</a>
-    <a href="#"><img src="settings.svg" class="icon"> Settings</a>
+            <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="#"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
         </ul>
 
         <div class="nav-right">
@@ -31,77 +31,30 @@
     </nav>
 
 <div class="grid-container">
-<div class="card">
-<div class="upload-box">+</div>
-<div class="upload-text">Upload New Syllabus</div>
-</div>
 
+    <a href="{{ url_for('upload_page') }}" class="card-link">
+        <div class="card">
+            <div class="upload-box">+</div>
+            <div class="upload-text">Upload New Syllabus</div>
 
-<div class="card">
-<div class="doc-preview">
-<div class="line short"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line shorter"></div>
-</div>
-<div class="meta">
-<strong>Syllabus 1</strong><br>
-Uploaded: 10/30/25
-</div>
-</div>
+        </div>
+    </a>
 
+    {% for syllabus in syllabi %}
+        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
+            <div class="card">
+                <div class="doc-preview">
+                   <div class="doc-preview">
+                       <img src="{{ url_for('get_thumbnail', pdfName=syllabus.name) }}" alt="Preview of {{ syllabus.name }}" class="preview-image">
+                   </div>
+                </div>
+                <div class="meta">
+                    <strong>{{ syllabus.name }}</strong><br>
+                    ID: {{ syllabus.id }}
+                </div>
+            </div>
+        </a>
+    {% endfor %}
 
-<div class="card">
-<div class="doc-preview">
-<div class="line"></div>
-<div class="line medium"></div>
-<div class="line"></div>
-<div class="line shorter"></div>
-<div class="line"></div>
 </div>
-<div class="meta">
-<strong>Syllabus 2</strong><br>
-Uploaded: 9/21/25
-</div>
-</div>
-
-
-<div class="card">
-<div class="doc-preview">
-<div class="line"></div>
-<div class="line"></div>
-<div class="line long"></div>
-<div class="line"></div>
-<div class="line short"></div>
-</div>
-<div class="meta">
-<strong>Syllabus 3</strong><br>
-Uploaded: 9/19/25
-</div>
-</div>
-    {% if syllabi %}
-    <ul>
-        {% for syllabus in syllabi %}
-            <li>
-                <!-- Link to the HTML page with the embedded viewer -->
-                <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}">
-                    {{ syllabus.name }}
-                </a>
-                (ID: {{ syllabus.id }})
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No syllabi found in the database.</p>
-    {% endif %}
-
-<div class="card">
-<div class="doc-preview">
-<div class="line medium"></div>
-<div class="line"></div>
-<div class="line"></div>
-<div class="line shorter"></div>
-<div class="line"></div>
-
 </html>
