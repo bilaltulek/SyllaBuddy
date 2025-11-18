@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Syllabuddy Create Account</title>
+        <link href="createaccount.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            integrity="..."
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <style>
+            /* -------------------------------------
+   Global Styles & Typography
+------------------------------------- */
+:root {
+    /* Color Variables based on the Syllabuddy login image */
+    --color-primary-blue: #3986Be; /* Button blue and main logo color */
+    --color-header-blue: #3986be;  /* Header strip blue */
+    --color-input-bg: #BEDAEF;     /* Light blue background in input fields */
+    --color-page-bg: #f4f6f9;      /* Light gray background color surrounding the main content */
+    --color-text-dark: #333;
+}
+
+/* Reset basic spacing and apply font */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: var(--color-page-bg);
+    width:100%;
+}
+
+
+/* -------------------------------------
+   Page Wrapper and Header Layout
+------------------------------------- */
+
+.page-wrapper {
+    /* Use Grid to structure the page into a fixed-height header and a flexible content area */
+    display: grid;
+    grid-template-rows: auto 1fr; /* Header takes content height (auto), content area takes the rest (1fr) */
+    min-height: 100vh;
+    border-left: 1px solid #ddd; /* To simulate the subtle border seen in the image */
+    border-right: 1px solid #ddd;
+}
+
+.page-header {
+    background-color: var(--color-header-blue);
+    color: white;
+    padding: 15px 40px;
+    height: 60px; /* Fixed height for the banner */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    /* Remove redundant border-bottom since the main content will be white */
+}
+
+
+/* my code here*/
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* left, right & center */
+    width: 100%;
+}
+
+
+.left-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.book-img,
+.middle-logo{
+     width:30px;
+ 
+    
+}
+
+.logo-text {
+    font-size: 20px;
+   
+}
+.center-nav{
+        position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+}
+.center-nav ul{
+    list-style:none;
+       display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: center;
+    margin-left:100px;
+    gap:32px;
+    padding:0;
+    margin:0;
+    
+}
+.center-nav ul > li {
+    gap:40px;
+}
+
+.center-nav > ul > li > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 5px;
+}
+.right-nav > img {
+    border-radius:50px;
+}
+/* -------------------------------------
+   Login Box Centering and Styling
+------------------------------------- */
+
+.login-box{
+    /* Make the content area white (or transparent white) and use flex for centering */
+    
+    
+    /* Flexbox setup to center the content vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontal centering of content inside login-box */
+    justify-content: center; /* Vertical centering */
+    flex-grow: 1; /* Allows it to take up the remaining height of the wrapper */
+    padding: 20px;
+    /* Optional: Add slight shadow to differentiate content from outer page background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); 
+    
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    ; /* Limits the max width of the form elements */
+    margin-top: 20px;
+    
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------
+   Form Elements
+------------------------------------- */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Space between input fields */
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    margin-bottom: 5px;
+    font-weight: 500; /* Adjusted weight for label text */
+}
+
+input[type="email"],
+input[type="password"], 
+input[type="text"]{
+    padding: 10px 15px;
+    border: 1px solid transparent; /* Start with a transparent border */
+    background-color: var(--color-input-bg); /* Light blue background for inputs */
+    font-size: 1rem;
+    height: 48px; 
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background-color: #c9e6f3; /* Slightly darker blue on focus */
+    border-color: var(--color-primary-blue); /* Visual cue on focus */
+}
+
+/* Forgot Password Link */
+.forgot-link {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #000000;
+    text-decoration: none;
+    margin-top: -10px; 
+    margin-bottom: 30px; /* Space before the button */
+    
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Login Button Styling */
+#login-button {
+    background-color: var(--color-primary-blue);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 15px;
+    height: 48px;
+    width: 100%;
+    max-width: 120px; /* Set a specific width for the button */
+    align-self: center; /* Centers the button within the form */
+}
+
+#login-button:hover {
+    background-color: #3b74b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Create Account Link (Inline below button) */
+.create-account-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    align-self: center;
+    margin-top: 10px; /* Space below the button area */
+}
+
+.create-account-link:hover {
+    color: var(--color-primary-blue);
+    text-decoration: underline;
+}
+
+/* Media Query for responsiveness on smaller screens */
+@media (max-width: 600px) {
+    .page-header {
+        padding: 0;
+        height: 400px;
+        position:sticky;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 30px;
+ 
+    }
+    .left-nav{
+        position:relative;
+        bottom:50px;
+    }
+    .center-nav ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .center-nav{
+        position:none;
+        transform:none;
+        
+
+        width:auto;
+    }
+    .right-nav{
+       position:relative;
+        bottom:0;
+    }
+    
+}
+
+        
+        </style>
+    </head>
+    <body>
+        <header class="page-header">
+            <nav class="navbar">
+                <div class="left-nav">
+                    <img src="Book%20open.png" class="book-img" /><span class="logo-text">Syllabuddy</span>
+                </div>
+                <div class="center-nav">
+                    <ul>
+                        <li>
+                            <a href="welcomepage.html"
+                                ><img src="Home.png" class="middle-logo" /><span class="logo-text">Home</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="Paperclip.png" class="middle-logo" /><span class="logo-text"
+                                    >Syllabi</span
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="Calendar.png" class="middle-logo" /><span class="logo-text"
+                                    >Calendar</span
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="Settings.png" class="middle-logo" /><span class="logo-text"
+                                    >Settings</span
+                                ></a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-nav"><img src="#" class="username" /></div>
+            </nav>
+        </header>
+
+        <div class="login-box">
+            <h2>Change [Event Name]</h2>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="old">Enter old [blank]</label>
+                    <input type="text" id="old" name="old" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="new">Enter new [blank]</label>
+                    <input type="text" id="new" name="new" required />
+                </div>
+                <div class="input-group">
+                    <label for="confirm">Confirm new [blank]</label>
+                    <input type="text" id="confirm" name="confirm" required />
+                </div>
+              
+                <button type="submit" id="login-button">Sign Up</button>
+            </form>
+        </div>
+    </body>
+</html>
