@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SyllabusBuddy – Calendar</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ░░░ TOP NAV BAR ░░░ -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="logo" class="logo-icon">
+            <span class="logo-text">SyllaBuddy</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Syllabi</a></li>
+            <li><a class="active" href="#">Calendar</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+
+        <div class="profile">
+            <div class="pfp"></div>
+            <span class="user-info">John Doe<br><small>JohnDoe123@gmail.com</small></span>
+        </div>
+    </nav>
+
+    <!-- ░░░ PAGE TITLE ░░░ -->
+    <section class="page-title">
+        <h2 id="currentMonth">[Current Month]</h2>
+    
+    </section>
+
+    <!-- ░░░ EVENT LIST ░░░ -->
+    <section id="eventList" class="event-list">
+        <!-- JS will inject event items here -->
+    </section>
+
+    <!-- ░░░ PAGINATION ░░░ -->
+    <div class="pagination">
+        <span class="page active">1</span>
+        <span class="page">2</span>
+        <span class="page">3</span>
+        <span class="page dots">...</span>
+        <span class="page">n-1</span>
+        <span class="page">n</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
