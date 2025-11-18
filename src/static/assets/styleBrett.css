@@ -1,96 +1,82 @@
 /* ---------- GLOBAL ---------- */
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
 }
 
-/* ---------- NAV BAR (MATCHING THE FIRST PAGE) ---------- */
+/* ---------- NAVIGATION BAR ---------- */
 
 .navbar {
-  background-color: #4a86b8;
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    background: #2c74b3;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  width: 35px;
-  height: 35px;
+    display: flex;
+    align-items: center;
 }
 
-.brand {
-  font-size: 26px;
-  font-weight: bold;
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
 }
 
-/* Center menu links */
-.nav-center {
-  display: flex;
-  align-items: center;
-  gap: 25px;
+.logo-text {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.nav-center a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 20px;
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.nav-center a.active,
-.nav-center a:hover {
-  background-color: #aac3dd;
-  color: #1f3f5b;
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 14px;
+    border-radius: 20px;
 }
 
-/* Icons */
-.icon {
-  height: 20px;
+.nav-links a.active {
+    background: #d0e6f9;
+    color: #2c74b3;
 }
 
-/* Profile Right Section */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* ---------- PROFILE ---------- */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.profile-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #aac3dd;
-  border-radius: 50%;
+.pfp {
+    width: 40px;
+    height: 40px;
+    background: #89b4dc;
+    border-radius: 50%;
 }
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-name {
-  font-weight: bold;
-}
-
-.profile-email {
-  font-size: 12px;
-  opacity: 0.8;
+.user-info {
+    font-size: 14px;
+    text-align: right;
 }
 
 /* ---------- PAGE TITLE ---------- */
+
 .page-title {
     padding: 20px 30px;
 }
