@@ -57,7 +57,7 @@ class syllabus:
                 formatEvent = self.icsBody(event)
                 icsEvent += formatEvent
 
-        with open("src/tempDir/syllabusEvents.ics", "w") as file:
+        with open("/home/johnmadden/PycharmProjects/SyllaBuddy/src/tempDir/syllabusEvents.ics", "w") as file:
             file.write(icsHead)
             file.write(icsEvent)
             file.write(icsBottom)

@@ -25,8 +25,10 @@
         </ul>
 
         <div class="profile">
-            <div class="pfp"></div>
-            <span class="user-info">John Doe<br><small>JohnDoe123@gmail.com</small></span>
+
+            <span class="user-info">
+                    {{ session.get('username') }}
+            </span>
         </div>
     </nav>
 
@@ -46,6 +48,9 @@
                     <strong>{{ syllabus.name }}</strong><br>
                     ID: {{ syllabus.id }}
                 </div>
+                <a href="{{ url_for('parse_syllabus', pdfName=syllabus.name) }}" class="parse-button" download>
+                        Parse & Download ICS
+                    </a>
             </div>
         </a>
     {% endfor %}
