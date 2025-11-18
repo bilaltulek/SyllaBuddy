@@ -1,6 +1,6 @@
 import json
 
-from reportlab.lib.pagesizes import elevenSeventeen
+
 
 from sqlDatabase import *
 from syllabusClass import *

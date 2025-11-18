@@ -15,7 +15,7 @@ class syllabus:
         self.fileName = ""
         self.format = "NULL"
         self.size = 0
-        self.pages = 0  # Note: this is never set, as we don't get page count
+        self.pages = 0
     def uploadSyllabus(self, filename, fileSize, legible,pdfPath) -> bool:
         fileType = ""
         if "." in filename:
@@ -34,7 +34,7 @@ class syllabus:
             print("File could not be parsed or was deemed illegible.")
             return False
 
-        # --- All checks passed, attempt upload ---
+
         try:
             self.db_manager.addRowToDatabase(filename, fileSize, pdfPath)
 
@@ -48,10 +48,15 @@ class syllabus:
         except Exception as e:
             print(f"An error occurred during database upload: {e}")
             return False
-    def createICSFile(self, professorName,dueDate,homeWorkName):
+    def createICSFile(self, jsonEvents):
         icsHead = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//syllabuddy//eventSheet 1.0//EN\nCALSCALE:GREGORIAN\nMETHOD:PUBLISH\n"
         icsBottom = "\nEND:VCALENDAR"
-        icsEvent = self.icsBody(professorName, dueDate, homeWorkName)
+        icsEvent = ""
+        if "events" in jsonEvents:
+            for event in jsonEvents["events"]:
+                formatEvent = self.icsBody(event)
+                icsEvent += formatEvent
+
         with open("src/tempDir/syllabusEvents.ics", "w") as file:
             file.write(icsHead)
             file.write(icsEvent)
@@ -59,14 +64,19 @@ class syllabus:
         file.close()
         return True
 
-    def icsBody(self,professorName2, dueDate2, homeWorkName2):
+    def icsBody(self,event):
         uniqueID = str(uuid.uuid4())
         dtstamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-        tempEnd = dueDate2[0:2] + dueDate2[3:5]
-        dateEnd = "2025" + tempEnd;
+        removeDashEvent = event['date'].replace("-", "")
+        summary = f"{event['code']} - {event['title']}"
+        description = f"Instructor: {event.get('instructor', 'Unknown')}\\nType: {event.get('type', 'event')}"
+        rawDes = event.get('description')
+        if rawDes and rawDes != "null":
+            description += f"\\nDetails: {rawDes}"
+
         #icsBody = (f"BEGIN:VEVENT\nSUMMARY: homework from {professorName}\nUID:{uniqueID}\nSEQUENCE:0\nSTATUS:CONFIRMED\n"
         #           f"TRANSP:TRANSPARENT\nRRULE:FREQ=YEARLY;INTERVAL=1;BYMONTH=2;BYMONTHDAY=12")
-        icsBody = f"BEGIN:VEVENT\nUID:{uniqueID}\nDTSTAMP:{dtstamp}\nDTSTART:{dateEnd}\nDTEND:{dateEnd}\nSUMMARY:{homeWorkName2} due\nEND:VEVENT"
+        icsBody = f"\nBEGIN:VEVENT\nUID:{uniqueID}\nDTSTAMP:{dtstamp}\nDTSTART:{removeDashEvent}\nDTEND:{removeDashEvent}\nSUMMARY:{summary} due\nEND:VEVENT"
         return icsBody
     def getFormat(self):
         return self.format
@@ -74,3 +84,59 @@ class syllabus:
         return self.size
     def getPages(self):
         return self.pages
+"""
+{
+  "events": [
+    {
+      "name": "CS 4341.007 Digital Logic & Computer Design",
+      "code": "CS 4341.007",
+      "instructor": "Wafa Jaffal",
+      "semester": "Fall 2025",
+      "title": "Term Start",
+      "type": "other",
+      "date": "2025-08-25",
+      "description": "Start of Fall 2025 term"
+    },
+    {
+      "name": "CS 4341.007 Digital Logic & Computer Design",
+      "code": "CS 4341.007",
+      "instructor": "Wafa Jaffal",
+      "semester": "Fall 2025",
+      "title": "Term End",
+      "type": "other",
+      "date": "2025-12-09",
+      "description": "End of Fall 2025 term"
+    },
+    {
+      "name": "CS 4341.007 Digital Logic & Computer Design",
+      "code": "CS 4341.007",
+      "instructor": "Wafa Jaffal",
+      "semester": "Fall 2025",
+      "title": "Exam I",
+      "type": "exam",
+      "date": "2025-10-02",
+      "description": null
+    },
+    {
+      "name": "CS 4341.007 Digital Logic & Computer Design",
+      "code": "CS 4341.007",
+      "instructor": "Wafa Jaffal",
+      "semester": "Fall 2025",
+      "title": "Exam II",
+      "type": "exam",
+      "date": "2025-11-04",
+      "description": null
+    },
+    {
+      "name": "CS 4341.007 Digital Logic & Computer Design",
+      "code": "CS 4341.007",
+      "instructor": "Wafa Jaffal",
+      "semester": "Fall 2025",
+      "title": "Exam III",
+      "type": "exam",
+      "date": "2025-12-09",
+      "description": null
+    }
+  ]
+}
+"""
