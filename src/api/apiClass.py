@@ -235,7 +235,7 @@ def syllabi_page():
     ]
     return render_template('syllabi.html',syllabi = syllabi_list)
 @app.route('/calendar')
-def calender_page():
+def calendar_page():
     db = getSyllabus_db()
     syllabi = db.displayAll()
     if syllabi is None:
@@ -245,7 +245,7 @@ def calender_page():
          'name': row[1] if isinstance(row, tuple) else row}
         for row in syllabi
     ]
-    return render_template('calendar.html')
+    return render_template('calendar.html', syllabi = syllabi_list)
 
 
 
