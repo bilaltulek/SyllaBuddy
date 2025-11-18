@@ -36,9 +36,20 @@
     </section>
 
     <!-- ░░░ HISTORY LIST ░░░ -->
-    <section id="historyList" class="history-list">
-        <!-- JS inserts items here -->
-    </section>
+    {% for syllabus in syllabi %}
+        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
+            <div class="card">
+
+
+
+                <div class="meta">
+                    <strong>{{ syllabus.name }}</strong><br>
+                    ID: {{ syllabus.id }}
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+
 
     <script src="../static/assets/script.js"></script>
 </body>
