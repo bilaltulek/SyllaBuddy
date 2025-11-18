@@ -234,7 +234,18 @@ def syllabi_page():
         for row in syllabi
     ]
     return render_template('syllabi.html',syllabi = syllabi_list)
-
+@app.route('/calendar')
+def calender_page():
+    db = getSyllabus_db()
+    syllabi = db.displayAll()
+    if syllabi is None:
+        syllabi = []
+    syllabi_list = [
+        {'id': row[0] if isinstance(row, tuple) else row,
+         'name': row[1] if isinstance(row, tuple) else row}
+        for row in syllabi
+    ]
+    return render_template('calendar.html')
 
 
 

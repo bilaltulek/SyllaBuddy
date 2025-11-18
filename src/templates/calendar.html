@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SyllabusBuddy – History</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/assets/styles.css') }}" />
+</head>
+
+<body>
+
+    <!-- ░░░ TOP NAV BAR ░░░ -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../static/assets/logo.svg" alt="logo" class="logo-icon">
+            <span class="logo-text">SyllaBuddy</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Upload</a></li>
+            <li><a class="active" href="#">History</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+
+        <div class="profile">
+            <div class="pfp"></div>
+            <span class="user-info">John Doe<br><small>JohnDoe123@gmail.com</small></span>
+        </div>
+    </nav>
+
+    <!-- ░░░ PAGE TITLE ░░░ -->
+    <section class="page-title">
+        <h2>Syllabus Upload History</h2>
+    </section>
+
+    <!-- ░░░ HISTORY LIST ░░░ -->
+    <section id="historyList" class="history-list">
+        <!-- JS inserts items here -->
+    </section>
+
+    <script src="../static/assets/script.js"></script>
+</body>
+</html>

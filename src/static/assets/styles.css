@@ -153,3 +153,204 @@ body {
   object-position: top;
   display: block;
 }
+/* ---------- GLOBAL ---------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+}
+
+
+/* ---------- NAVIGATION BAR ---------- */
+
+.navbar {
+    background: #2c74b3;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 7px 12px;
+    border-radius: 20px;
+}
+
+.nav-links a.active {
+    background: #d0e6f9;
+    color: #2c74b3;
+    font-weight: bold;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pfp {
+    width: 40px;
+    height: 40px;
+    background: #89b4dc;
+    border-radius: 50%;
+}
+
+.user-info {
+    font-size: 14px;
+    text-align: right;
+    line-height: 1.2;
+}
+
+
+/* ---------- PAGE TITLE ---------- */
+
+.page-title {
+    padding: 20px 30px;
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* ---------- EVENT LIST ---------- */
+
+.event-list {
+    width: 90%;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.event-item {
+    background: #bdd7ee;
+    padding: 25px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.event-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;     /* space between "Manage Event" and circle */
+    margin-right: 20px;  /* <-- shift the circle further right */
+}
+
+
+.event-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.event-date {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.event-syllabus {
+    font-size: 17px;
+    color: #333;
+}
+
+
+/* ---------- MANAGE + DOWNLOAD ---------- */
+
+.manage-text {
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-align: right;
+}
+
+.download-btn {
+    width: 55px;
+    height: 55px;
+    background: #5fa8d3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+
+
+}
+
+.download-btn img {
+    width: 28px;
+    height: 28px;
+}
+
+
+/* ---------- PAGINATION ---------- */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.page {
+    padding: 6px 12px;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.page.active {
+    background: #2c74b3;
+    color: white;
+}
+
+.page.dots {
+    background: transparent;
+    cursor: default;
+}

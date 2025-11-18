@@ -1,0 +1,145 @@
+/* ---------- GLOBAL ---------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+}
+
+/* ---------- NAVIGATION BAR ---------- */
+
+.navbar {
+    background: #2c74b3;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.nav-links a.active {
+    background: #d0e6f9;
+    color: #2c74b3;
+}
+
+/* ---------- PROFILE ---------- */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pfp {
+    width: 40px;
+    height: 40px;
+    background: #89b4dc;
+    border-radius: 50%;
+}
+
+.user-info {
+    font-size: 14px;
+    text-align: right;
+}
+
+/* ---------- PAGE TITLE ---------- */
+
+.page-title {
+    padding: 20px 30px;
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* ---------- HISTORY LIST ---------- */
+
+.history-list {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #bdd7ee;
+    padding: 25px;
+    border-radius: 30px;
+}
+
+.history-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.item-course {
+    font-size: 16px;
+    color: #333;
+}
+
+.item-date {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ---------- DOWNLOAD BUTTON ---------- */
+
+.download-btn {
+    width: 55px;
+    height: 55px;
+    background: #5fa8d3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.download-btn img {
+    width: 28px;
+    height: 28px;
+}
