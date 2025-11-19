@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from typing import List
 from google import genai
 from google.genai import types
-
+from pathlib import Path
 
 class Event(BaseModel):
     name: str | None
@@ -40,18 +40,22 @@ def parsing(pdf_data: bytes):
 
     print(f"Created temporary PDF at: {temp_file_path}")
 
-    '''
-    with open(output_filename, 'wb') as f:
-        f.write(pdf_data)
-    file_url = f'file://{os.path.realpath(output_filename)}'
-
-    with open(pdf_url, "rb") as f:
-        pdf_data = f.read()
-    '''
-
-    load_dotenv()
+    #"""
+    #with open(output_filename, 'wb') as f:
+    #    f.write(pdf_data)
+    #file_url = f'file://{os.path.realpath(output_filename)}'
+#
+    #with open(pdf_url, "rb") as f:
+    #    pdf_data = f.read()
+    #"""
+    script_dir = Path(__file__).parent
+    env_path = script_dir / '.env'
+    load_result = load_dotenv(env_path)
     api_key = os.getenv("GEMINI_API_KEY")
+    print(f"Did .env load {load_result}  ")
+
     client = genai.Client(api_key=api_key)
+    print(f"API Key loaded: {'Yes' if api_key else 'No'}")
     # client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
     # model = genai.GenerativeModel("gemini-2.0-flash-exp")
     prompt_text = (
@@ -65,7 +69,7 @@ def parsing(pdf_data: bytes):
         - Assignments (homework, projects, papers) with due dates
         - Exams (midterms, finals, quizzes) with dates
         - Important deadlines (drop dates, holidays, breaks)
-        -ignore lecture due dates focus on Exams and homework
+        - ignore lecture due dates focus on Exams and homework
 
         For each event, extract:
         - Event title/name
@@ -134,7 +138,7 @@ def parsing(pdf_data: bytes):
 
 
 if __name__ == "__main__":
-    test_pdf_path = r"/home/johnmadden/PycharmProjects/SyllaBuddy/src/tempDir/Syllabus_PHYS-2325.001.pdf"
+    test_pdf_path = r"tempDir/Syllabus_PHYS-2325.001.pdf"
 
     with open(test_pdf_path, "rb") as f:
         pdf_bytes = f.read()

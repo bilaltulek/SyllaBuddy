@@ -1,4 +1,6 @@
 import sqlite3
+import tempfile
+
 import fitz
 import os
 import io
@@ -284,13 +286,15 @@ def parse_syllabus(pdfName):
 
     jsonString = parsing(pdf_data)
     parsedJson = json.loads(jsonString)
-    syllabusInstance.createICSFile(parsedJson)
+    iceByteString = syllabusInstance.createICSFile(parsedJson)
+    mem_file = io.BytesIO(iceByteString)
+    mem_file.seek(0)
 
-    with open("/home/johnmadden/PycharmProjects/SyllaBuddy/src/tempDir/syllabusEvents.ics", 'rb') as f:
-        icsBytes = io.BytesIO(f.read())
+
+
 
     return send_file(
-        icsBytes,
+        mem_file,
         mimetype='text/calendar',
         as_attachment=True,
         download_name=f"{pdfName.rsplit('.', 1)[0]}.ics"
