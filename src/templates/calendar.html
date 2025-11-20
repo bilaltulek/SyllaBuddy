@@ -46,9 +46,9 @@
         </div>
     </a>
 
-    <!-- DOWNLOAD BUTTON -->
+    <!-- DOWNLOAD BUTTON (CORRECTED) -->
     <a
-        href="{{ url_for('parse_syllabus', syllabus_id=syllabus.id) }}"
+        href="{{ url_for('parse_syllabus', pdfName=syllabus.name) }}"
         class="download-btn"
         download
     >
@@ -57,6 +57,7 @@
 
 </div>
 {% endfor %}
+
 
 
 
