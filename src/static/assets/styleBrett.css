@@ -147,11 +147,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #bdd7ee;
-    padding: 25px;
-    border-radius: 30px;
-    margin: 20px;
 }
+
 .card-link {
     flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
