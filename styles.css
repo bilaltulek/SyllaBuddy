@@ -1,0 +1,128 @@
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    background: white;
+    color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #5f8fc9;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* CENTER NAV ITEMS */
+.nav-center {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-center a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+/* RIGHT PROFILE AREA */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-circle {
+    width: 38px;
+    height: 38px;
+    background: #c6d4e9;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+/* MAIN CONTENT */
+.content {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 45px;
+    margin-bottom: 40px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 50px;
+    background:  #BEDAEF;
+    padding: 12px 12px;
+    width: 125px;
+    justify-content: center;
+    margin: 0 auto; 
+    align-items: center;
+}
+
+.options a {
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+}
+.roundBar {
+    margin-bottom: 70px;
+}
+.lowbar {
+    background: #BEDAEF;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    padding: 12px 24px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+  
+ 
+}
+.lowbar a {
+   font-size: 20px;
+    color: #000;
+    text-decoration: none; 
+}

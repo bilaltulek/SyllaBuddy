@@ -1,0 +1,52 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+      <nav class="navbar">
+        <div class="nav-left">
+            <img src="assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
+        </div>
+
+        <ul class="nav-center">
+            
+    <a href="{{ url_for('dashboard') }}"><img src="assets/home.svg" class="icon"> Home</a>     
+    <a href="{{ url_for('syllabi_page') }}"><img src="assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="assets/settings.svg" class="icon"> Settings</a>
+        </ul>
+
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">Jhon Doe</span>
+                
+            </div>
+        </div>
+    </nav>
+<!-- Main Content -->
+    <main class="content">
+        <h1>Welcome!</h1>
+        
+       
+        <div class="options">
+            <a href="{{ url_for('uploadPDF') }}">Upload Syllabus</a>
+            
+        </div>
+
+        <div class="lowbar">
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        </div>
+    </main>
+
+</body>
+</html>
+
+
+
