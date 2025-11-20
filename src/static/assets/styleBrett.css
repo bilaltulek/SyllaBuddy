@@ -143,3 +143,12 @@ body {
     width: 28px;
     height: 28px;
 }
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #bdd7ee;
+    padding: 25px;
+    border-radius: 30px;
+    margin: 20px;
+}

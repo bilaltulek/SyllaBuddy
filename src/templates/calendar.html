@@ -37,18 +37,27 @@
 
     <!-- ░░░ HISTORY LIST ░░░ -->
     {% for syllabus in syllabi %}
-        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
-            <div class="card">
+<div class="card">
 
+    <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
+        <div class="meta">
+            <strong>{{ syllabus.name }}</strong><br>
+            ID: {{ syllabus.id }}
+        </div>
+    </a>
 
+    <!-- DOWNLOAD BUTTON -->
+    <a
+        href="{{ url_for('parse_syllabus', syllabus_id=syllabus.id) }}"
+        class="download-btn"
+        download
+    >
+        <img src="../static/assets/arrow.png" alt="Download">
+    </a>
 
-                <div class="meta">
-                    <strong>{{ syllabus.name }}</strong><br>
-                    ID: {{ syllabus.id }}
-                </div>
-            </div>
-        </a>
-    {% endfor %}
+</div>
+{% endfor %}
+
 
 
     <script src="../static/assets/script.js"></script>
