@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Syllabus PDF</title>
+    <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+        <nav class="navbar">
+        <div class="nav-left">
+            <img src="assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
+        </div>
+
+        <ul class="nav-center">
+            
+    <a href="{{ url_for('dashboard') }}"><img src="assets/home.svg" class="icon"> Home</a>     
+    <a href="{{ url_for('syllabi_page') }}"><img src="assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="assets/settings.svg" class="icon"> Settings</a>
+        </ul>
+
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">Jhon Doe</span>
+                
+            </div>
+        </div>
+    </nav>
+
+    <h1>Upload a Syllabus PDF</h1>
+
+
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %} 
+-->
+
+    <form action="/uploadPdf" method="POST" enctype="multipart/form-data">
+        <label for="fileInput">Choose PDF File:</label><br><br>
+        <input type="file" id="fileInput" name="file" accept=".pdf" required>
+        <br><br>
+        <input type="submit" value="Upload PDF">
+    </form>
+
+    <hr>
+    <a href="/syllabi">View All Syllabi (API link)</a>
+</body>
+</html>
