@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Syllabuddy Logout</title>
+        <link href="dihh.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            integrity="..."
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+        <style>
+            /* --- Assuming this is wrapped inside your main content area --- */
+
+            :root {
+                /* Color Variables based on the Syllabuddy login image */
+                --color-primary-blue: #3986be; /* Button blue and main logo color */
+                --color-header-blue: #3986be; /* Header strip blue */
+                --color-input-bg: #bedaef; /* Light blue background in input fields */
+                --color-page-bg: #f4f6f9; /* Light gray background color surrounding the main content */
+                --color-text-dark: #333;
+                --max-form-width: 320px;
+            }
+
+            /* Reset basic spacing and apply font */
+            body {
+                font-family: "Inter", sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background-color: var(--color-page-bg);
+                width: 100%;
+                overflow-y: hidden;
+                overflow-x: hidden;
+            }
+
+            .page-wrapper {
+                /* Use Grid to structure the page into a fixed-height header and a flexible content area */
+                display: grid;
+                grid-template-rows: auto 1fr; /* Header takes content height (auto), content area takes the rest (1fr) */
+                min-height: 100vh;
+                border-left: 1px solid #ddd; /* To simulate the subtle border seen in the image */
+                border-right: 1px solid #ddd;
+            }
+
+            .page-header {
+                background-color: var(--color-header-blue);
+                color: white;
+                padding: 15px 40px;
+                height: 60px; /* Fixed height for the banner */
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                /* Remove redundant border-bottom since the main content will be white */
+            }
+
+            /* mostly navigation*/
+            .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between; /* left, right & center */
+                width: 100%;
+            }
+
+            .left-nav,
+            .right-nav {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .book-img,
+            .middle-logo {
+                width: 30px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+            .center-nav {
+                display: flex;
+                justify-content: center; /* center horizontally */
+                flex: 1; /* take remaining space */
+            }
+
+            .center-nav ul {
+                display: flex;
+                gap: 20px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .center-nav ul > li {
+                gap: 40px;
+            }
+
+            .center-nav > ul > li > a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: white;
+                gap: 5px;
+            }
+            .right-nav > img {
+                border-radius: 50px;
+            }
+
+            /* -------------------------------------
+               Login Box Centering and Styling
+            ------------------------------------- */
+
+            /* 1. Center the Account Manager Container */
+            .account-manager {
+                /* Use Flexbox to align all content centrally */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center horizontally */
+                padding: 50px 20px;
+                width: 100%;
+                /* You might use margin: auto if this div has a fixed width,
+                   but here we center the content instead. */
+            }
+
+            /* 2. Main Heading */
+            .account-title {
+                font-size: 2em;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 40px; /* Space between heading and links */
+            }
+
+            /* 3. Action Links Container (List) */
+            .action-list {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start; /* Aligns the links themselves to the left within the center block */
+                gap: 20px; /* Vertical space between links */
+            }
+
+            /* 4. Individual Links */
+            .action-link {
+                font-size: 1.25em; /* Large, easy-to-read text */
+                font-weight: 500;
+                color: #000;
+                text-decoration: none; /* No underline */
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+
+            .action-link:hover {
+                color: #69def6; /* Changes color on hover */
+            }
+
+            /* 5. Icon Styling (for the arrow) */
+            .action-link i {
+                /* Font Awesome class for the diagonal arrow (fa-external-link-alt) */
+                margin-left: 10px;
+                font-size: 0.9em; /* Slightly smaller than the text */
+            }
+            /* Media Query for responsiveness on smaller screens */
+
+            /* Mobile layout */
+            @media (max-width: 600px) {
+                .page-header {
+                    height: 50%;
+                }
+                .navbar {
+                    flex-direction: column; /* Stack left, center, right navs */
+                    align-items: center; /* Center everything horizontally */
+                    gap: 20px; /* Space between nav sections */
+                    padding: 10px 0;
+                }
+
+                .left-nav,
+                .right-nav {
+                    position: static; /* Remove any bottom/absolute offsets */
+                }
+
+                .center-nav {
+                    position: static; /* No absolute */
+                    transform: none;
+                    width: 100%; /* Full width to allow wrapping */
+                }
+
+                .center-nav ul {
+                    justify-content: center; /* Center links */
+                    flex-wrap: wrap; /* Wrap if too long */
+                    gap: 15px; /* Space between items */
+                    margin-left: 0; /* Remove previous offsets */
+                }
+
+                .center-nav ul > li > a {
+                    font-size: 0.9rem; /* Optional: smaller text for mobile */
+                }
+
+                .book-img,
+                .middle-logo {
+                    width: 24px; /* Slightly smaller icons */
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="page-header">
+       <nav class="navbar">
+    <div class="nav-left">
+        <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+        <span class="brand">SyllaBuddy</span>
+    </div>
+
+    <ul class="nav-center">
+        <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+<a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+<a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+<a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
+    </ul>
+
+    <div class="nav-right">
+        <div class="profile-circle"></div>
+        <div class="profile-info">
+            <span class="profile-name">{{ session.get('username') }}</span>
+
+        </div>
+    </div>
+</nav>
+        </header>
+
+        <div class="account-manager">
+            <h1 class="account-title">Manage Account</h1>
+
+            <div class="action-list">
+                <a href="#" class="action-link"> Change Name <i class="fas fa-external-link-alt"></i> </a>
+
+                <a href="#" class="action-link"> Change Email <i class="fas fa-external-link-alt"></i> </a>
+
+                <a href="#" class="action-link"> Change Password <i class="fas fa-external-link-alt"></i> </a>
+            </div>
+        </div>
+    </body>
+
+</html>
