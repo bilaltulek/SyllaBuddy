@@ -152,3 +152,6 @@ body {
     border-radius: 30px;
     margin: 20px;
 }
+.card-link {
+    flex: 1;
+}
