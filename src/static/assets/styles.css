@@ -354,3 +354,11 @@ body {
     background: transparent;
     cursor: default;
 }
+.nav-center a {
+  text-decoration: none;
+  color: inherit;
+
+}
+.nav-center a:hover {
+  opacity: 0.8;
+}

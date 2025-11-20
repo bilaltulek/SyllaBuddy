@@ -1,4 +1,6 @@
 import sqlite3
+import tempfile
+
 import fitz
 import pymupdf
 import os
@@ -10,6 +12,10 @@ from flask_cors import CORS
 from flask import render_template, flash
 from flask import Flask, send_file
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from parsingBilal import parsing
+from syllabusClass import *
+import json
+
 
 app = Flask(__name__, template_folder= '../templates', static_folder='../static')
 CORS(app)
@@ -246,6 +252,7 @@ def calendar_page():
          'name': row[1] if isinstance(row, tuple) else row}
         for row in syllabi
     ]
+
     return render_template('calendar.html', syllabi = syllabi_list)
 
 
@@ -269,6 +276,30 @@ def get_thumbnail(pdfName):
     return send_file(output, mimetype='image/png')
 
 
+@app.route('/parse_syllabus/<pdfName>', methods=['GET'])
+def parse_syllabus(pdfName):
+
+    db = getSyllabus_db()
+    pdf_data = db.retrievePDF(pdfName)
+    syllabusInstance = syllabus(db)
+    if not pdf_data:
+        abort(404, description=f"Syllabus '{pdfName}' not found for parsing.")
+
+    jsonString = parsing(pdf_data)
+    parsedJson = json.loads(jsonString)
+    iceByteString = syllabusInstance.createICSFile(parsedJson)
+    mem_file = io.BytesIO(iceByteString)
+    mem_file.seek(0)
+
+
+
+
+    return send_file(
+        mem_file,
+        mimetype='text/calendar',
+        as_attachment=True,
+        download_name=f"{pdfName.rsplit('.', 1)[0]}.ics"
+    )
 
 
 

@@ -57,12 +57,11 @@ class syllabus:
                 formatEvent = self.icsBody(event)
                 icsEvent += formatEvent
 
-        with open("src/tempDir/syllabusEvents.ics", "w") as file:
-            file.write(icsHead)
-            file.write(icsEvent)
-            file.write(icsBottom)
-        file.close()
-        return True
+
+        outPutString = icsHead + icsEvent + icsBottom
+        return outPutString.encode('utf-8')
+
+
 
     def icsBody(self,event):
         uniqueID = str(uuid.uuid4())

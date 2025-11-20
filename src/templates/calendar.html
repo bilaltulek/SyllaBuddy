@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SyllabusBuddy – History</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/assets/styles.css') }}" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <!-- ░░░ TOP NAV BAR ░░░ -->
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="logo" class="logo-icon">
+            <img src="../static/assets/logo.svg" alt="logo" class="logo-icon">
             <span class="logo-text">SyllaBuddy</span>
         </div>
 
@@ -36,10 +36,21 @@
     </section>
 
     <!-- ░░░ HISTORY LIST ░░░ -->
-    <section id="historyList" class="history-list">
-        <!-- JS inserts items here -->
-    </section>
+    {% for syllabus in syllabi %}
+        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
+            <div class="card">
 
-    <script src="script.js"></script>
+
+
+                <div class="meta">
+                    <strong>{{ syllabus.name }}</strong><br>
+                    ID: {{ syllabus.id }}
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+
+
+    <script src="../static/assets/script.js"></script>
 </body>
 </html>
