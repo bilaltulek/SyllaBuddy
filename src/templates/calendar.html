@@ -10,24 +10,24 @@
 
 <body>
 
-    <!-- ░░░ TOP NAV BAR ░░░ -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="../static/assets/logo.svg" alt="logo" class="logo-icon">
-            <span class="logo-text">SyllaBuddy</span>
+   <!-- Navigation Bar -->
+     <nav class="navbar">
+        <div class="nav-left">
+            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Upload</a></li>
-            <li><a class="active" href="#">History</a></li>
-            <li><a href="#">Settings</a></li>
+        <ul class="nav-center">
+            <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
         </ul>
 
         <div class="profile">
-
+            <div class="pfp"></div>
             <span class="user-info">
-                    {{ session.get('username') }}
+                {{ session.get('username', 'Guest') }}
             </span>
         </div>
     </nav>
@@ -39,21 +39,28 @@
 
     <!-- ░░░ HISTORY LIST ░░░ -->
     {% for syllabus in syllabi %}
-        <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
-            <div class="card">
+<div class="card">
+
+    <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}" class="card-link">
+        <div class="meta">
+            <strong>{{ syllabus.name }}</strong><br>
+            ID: {{ syllabus.id }}
+        </div>
+    </a>
+
+    <!-- DOWNLOAD BUTTON (CORRECTED) -->
+    <a
+        href="{{ url_for('parse_syllabus', pdfName=syllabus.name) }}"
+        class="download-btn"
+        download
+    >
+        <img src="../static/assets/arrow.png" alt="Download">
+    </a>
+
+</div>
+{% endfor %}
 
 
-
-                <div class="meta">
-                    <strong>{{ syllabus.name }}</strong><br>
-                    ID: {{ syllabus.id }}
-                </div>
-                <a href="{{ url_for('parse_syllabus', pdfName=syllabus.name) }}" class="parse-button" download>
-                        Parse & Download ICS
-                    </a>
-            </div>
-        </a>
-    {% endfor %}
 
 
     <script src="../static/assets/script.js"></script>

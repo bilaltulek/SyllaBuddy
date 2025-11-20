@@ -69,6 +69,11 @@ class dbManager:
         cursor.execute("SELECT * FROM " + self.tableName + " WHERE username = ?", (username,))
         row = cursor.fetchone()
         return row
+    def boolExistsUser(self, username) -> bool:
+        cursor = self.conn.cursor()
+        cursor.execute("SELECT * FROM " + self.tableName + " WHERE username = ?", (username,))
+        row = cursor.fetchone()
+        return True if row else False
     def displayAllUsers(self):
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM " + self.tableName)
@@ -91,6 +96,7 @@ class dbManager:
         #for row in rows:
         #    print(row)
         return rows
+
     def displayAllJSON(self):
         cursor = self.conn.cursor()
         cursor.execute("SELECT id, JSON FROM " + self.tableName + ";")

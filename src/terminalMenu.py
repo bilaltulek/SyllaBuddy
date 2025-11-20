@@ -109,7 +109,7 @@ elif tableChoice == 3:
         choice = int(input("Enter your choice: "))
         match choice:
             case 1:
-                users = localManager.displayAll()
+                users = localManager.displayAllUsers()
                 for user in users:
                     print(user)
                 break

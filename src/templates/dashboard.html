@@ -2,48 +2,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard - Main Content</title>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="../static/assets/styles3.css">
 </head>
 <body>
+      <nav class="navbar">
+        <div class="nav-left">
+            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
+        </div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div style="color: {{ 'green' if 'success' in category else 'blue' }}; border: 1px solid;">
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+        <ul class="nav-center">
 
-    <h1>Welcome back, {{ username }}!</h1>
-    <p>This is your main application dashboard.</p>
-
-    <nav>
-        <ul>
-            <!--<li><a href="{{ url_for('upload_page') }}">Upload a New PDF</a></li>-->
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-            <li><a href="{{ url_for('syllabi_page') }}">Upload and view Syllabus</a></li>
+    <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
         </ul>
+
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">
+                    {{ session.get('username', 'Guest') }}
+                </span>
+
+            </div>
+        </div>
     </nav>
+<!-- Main Content -->
+    <main class="content">
+        <h1>Welcome!</h1>
 
 
-    <h2>Available Syllabi</h2>
-    {% if syllabi %}
-        <ul>
-        {% for syllabus in syllabi %}
-            <li>
+        <div class="options">
+            <a href="{{ url_for('upload_page') }}">Upload Syllabus</a>
 
-                <a href="{{ url_for('displayAPDF', pdfName=syllabus.name) }}">
-                    {{ syllabus.name }}
-                </a>
-                (ID: {{ syllabus.id }})
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No syllabi found in the database.</p>
-    {% endif %}
+        </div>
+
+        <div class="lowbar">
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        </div>
+    </main>
 
 </body>
 </html>

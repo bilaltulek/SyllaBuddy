@@ -14,6 +14,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from parsingBilal import parsing
 from syllabusClass import *
 import json
+from functools import wraps
 
 
 app = Flask(__name__, template_folder= '../templates', static_folder='../static')
@@ -55,19 +56,26 @@ def close_db(e=None):
     if users_db is not None:
         users_db.close()
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Check if the user is logged in using your session key
+        if not session.get('logged_in'):
+            flash("Please log in to access this page.", "error")
+            return redirect(url_for('welcome_Page'))
+        return f(*args, **kwargs)
 
+    return decorated_function
 
 
 @app.route('/')
 def index():
-    if session.get('logged_in'):
-        return redirect(url_for('dashboard'))
-
-
-    return redirect(url_for('login'))
+    # Directs the root URL (http://localhost:5000/) straight to the Welcome Page
+    return redirect(url_for('welcome_Page'))
 
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
 
     if not session.get('logged_in'):
@@ -137,6 +145,7 @@ def logout():
 
 
 @app.route('/syllabi', methods=['GET'])
+@login_required
 def get_all_syllabi():
     db = getSyllabus_db()
     syllabi = db.displayAll()
@@ -150,6 +159,7 @@ def get_all_syllabi():
 
 
 @app.route('/syllabus/<int:syllabus_id>', methods=['GET'])
+@login_required
 def get_syllabus(syllabus_id):
     db = getSyllabus_db()
     syllabus = db.query(syllabus_id)
@@ -167,6 +177,7 @@ def get_syllabus(syllabus_id):
         return jsonify({'error': 'Syllabus not found'}), 404
 
 @app.route('/uploadPdf', methods=['POST'])
+@login_required
 def uploadPDF():
     file = request.files['file']
     if file.filename == '':
@@ -196,6 +207,7 @@ def uploadPDF():
 
 
 @app.route('/displayPDF/<pdfName>', methods=['GET'])
+@login_required
 def display_pdf(pdfName):
     db = getSyllabus_db()
     pdf_data_from_db = db.retrievePDF(pdfName)
@@ -219,9 +231,11 @@ def display_pdf(pdfName):
 
 
 @app.route('/upload_page')
+@login_required
 def upload_page():
     return render_template('uploads.html')
 @app.route('/displayAPDF/<pdfName>')
+@login_required
 def displayAPDF(pdfName):
 
     return render_template('displaypdf.html', pdf_filename=pdfName)
@@ -229,6 +243,7 @@ def displayAPDF(pdfName):
 #def login2():
 #    return render_template('login2.html')
 @app.route('/syllabiHTML')
+@login_required
 def syllabi_page():
     db = getSyllabus_db()
     syllabi = db.displayAll()
@@ -241,6 +256,7 @@ def syllabi_page():
     ]
     return render_template('syllabi.html',syllabi = syllabi_list)
 @app.route('/calendar')
+@login_required
 def calendar_page():
     db = getSyllabus_db()
     syllabi = db.displayAll()
@@ -258,6 +274,7 @@ def calendar_page():
 
 
 @app.route('/thumbnail/<pdfName>')
+@login_required
 def get_thumbnail(pdfName):
     db = getSyllabus_db()
 
@@ -276,6 +293,7 @@ def get_thumbnail(pdfName):
 
 
 @app.route('/parse_syllabus/<pdfName>', methods=['GET'])
+@login_required
 def parse_syllabus(pdfName):
 
     db = getSyllabus_db()
@@ -299,6 +317,33 @@ def parse_syllabus(pdfName):
         as_attachment=True,
         download_name=f"{pdfName.rsplit('.', 1)[0]}.ics"
     )
+@app.route('/createAccount', methods=['GET', 'POST'])
+def create_Account():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if password != confirm_password:
+            flash("Passwords do not match!", "error")
+            return redirect(url_for('create_Account'))
+
+
+        db = getUsers_db()
+        if db.boolExistsUser(name):
+            flash("user already exists", "error")
+            return redirect(url_for('create_Account'))
+        db.addRowToUsersTable(name, password)
+
+        flash("Account created successfully! Please log in.", "success")
+        return redirect(url_for('login'))
+    return render_template("createaccount.html")
+@app.route('/welcomePage', methods=['GET', 'POST'])
+def welcome_Page():
+    return render_template("welcome.html")
+
+
+
 
 
 

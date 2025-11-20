@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Syllabuddy - Welcome</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <style>
+            /* Your CSS remains exactly the same as you provided */
+            :root {
+                --color-header-blue: #3986be;
+                --color-input-bg: #bedaef;
+                --color-page-bg: #f4f6f9;
+                --max-form-width: 320px;
+                --color-active-bg: #e3f2fd;
+                --color-footer-bg: #bedaef;
+                --color-text-dark: #000;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                min-height: 100vh;
+                background-color: var(--color-page-bg);
+                width: 100%;
+            }
+
+            .page-wrapper {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                min-height: 100vh;
+                border-left: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+            }
+
+           .page-header {
+                background-color: var(--color-header-blue);
+                color: white;
+                padding: 15px 40px;
+                height: 60px;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .left-nav,
+            .right-nav {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .book-img,
+            .middle-logo {
+                width: 30px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+            .center-nav {
+                display: flex;
+                justify-content: center;
+                flex: 1;
+            }
+
+            .center-nav ul {
+                display: flex;
+                gap: 20px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+
+            }
+            .nav-center a {
+            color: white;            /* Changes color from blue to dark gray/black */
+            text-decoration: none;  /* Removes the default underline */
+
+
+
+            }
+
+            .center-nav ul > li {
+                gap: 40px;
+
+            }
+
+            .center-nav > ul > li > a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: white;
+                gap: 5px;
+            }
+
+            .welcome-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                min-height: 60vh; /* Added height so it centers nicely */
+            }
+
+            .welcome-content h1 {
+                font-size: 4em;
+                font-weight: 800;
+                color: var(--color-text-dark);
+                margin-bottom: 30px;
+            }
+
+            .get-started-btn {
+                padding: 10px 25px;
+                font-size: 1.1em;
+                color: var(--color-text-dark);
+                background-color: #f0f0f0;
+                border: 1px solid #ccc;
+                border-radius: 19px;
+                cursor: pointer;
+            }
+
+            .get-started-btn:hover {
+                background-color: #e0e0e0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .page-footer {
+                background-color: var(--color-footer-bg);
+                padding: 15px 20px;
+                display: flex;
+                justify-content: flex-end;
+                /* Using fixed positioning or flex is better than transform for footers usually,
+                   but keeping your style for consistency */
+                transform: translateY(220px);
+            }
+
+            .logout-btn {
+                background-color: #534f4f;
+                color: white;
+                padding: 8px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 500;
+            }
+
+            @media (max-width: 600px) {
+                .page-header { height: 50%; }
+                .navbar { flex-direction: column; align-items: center; gap: 20px; padding: 10px 0; }
+                .left-nav, .right-nav, .center-nav { position: static; transform: none; width: 100%; }
+                .center-nav ul { justify-content: center; flex-wrap: wrap; gap: 15px; margin-left: 0; }
+                .page-footer { transform: translateY(120px); }
+            }
+            .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            }
+
+
+            .logo {
+            height: 40px;
+            width: auto;
+            }
+
+        </style>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="color: {{ 'green' if 'success' in category else 'blue' }}; border: 1px solid;">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </head>
+    <body>
+        <header class="page-header">
+             <nav class="navbar">
+        <div class="nav-left">
+            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
+        </div>
+
+        <ul class="nav-center">
+
+    <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
+        </ul>
+
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">
+                    {{ session.get('username', 'Guest') }}
+                </span>
+
+            </div>
+        </div>
+    </nav></nav>
+        </header>
+
+        <main class="welcome-content">
+            <h1>Welcome!</h1>
+
+            <a href="{{ url_for('login') }}">
+                <button class="get-started-btn">Get Started</button>
+            </a>
+        </main>
+
+        <footer class="page-footer">
+            <a href="{{ url_for('logout') }}">
+                <button class="logout-btn">Log Out</button>
+            </a>
+        </footer>
+    </body>
+</html>

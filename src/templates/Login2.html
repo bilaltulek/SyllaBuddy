@@ -5,6 +5,7 @@
     <title>Syllabuddy Login</title>
     <link href="styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/assets/styles3.css">
     <style>
     /* -------------------------------------
    Global Styles & Typography
@@ -224,12 +225,30 @@ input[type="password"]:focus {
     </style>
 </head>
 <body>
-    <header class="page-header">
-        <div class="logo-area">
-            <div class="logo"><!-- Replace the SVG in index.html with this <i> tag -->
-                <img src="Book open.png" alt="open-book-logo" id="open-book" /><span class="logo-text">Syllabuddy</span></div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+            <span class="brand">SyllaBuddy</span>
         </div>
-    </header>
+
+        <ul class="nav-center">
+
+    <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+    <a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
+        </ul>
+
+        <div class="nav-right">
+            <div class="profile-circle"></div>
+            <div class="profile-info">
+                <span class="profile-name">
+                    {{ session.get('username', 'Guest') }}
+                </span>
+
+            </div>
+        </div>
+    </nav>
 
     <div class="login-box">
         <h2>Log in</h2>
@@ -250,7 +269,7 @@ input[type="password"]:focus {
 
             <button type="submit" id="login-button">Log in</button>
 
-            <a href="createaccount.html" class="create-account-link">Create an account</a>
+            <a href="{{ url_for('create_Account') }}" class="create-account-link">Create an account</a>
         </form>
 
     </div>
