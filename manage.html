@@ -204,42 +204,27 @@
     </head>
     <body>
         <header class="page-header">
-            <nav class="navbar">
-                <div class="left-nav">
-                    <img src="Book%20open.png" class="book-img" /><span class="logo-text">Syllabuddy</span>
-                </div>
-                <div class="center-nav">
-                    <ul>
-                        <li>
-                            <a href="welcomepage.html"
-                                ><img src="Home.png" class="middle-logo" /><span class="logo-text">Home</span></a
-                            >
-                        </li>
-                        <li>
-                            <a href="#"
-                                ><img src="Paperclip.png" class="middle-logo" /><span class="logo-text"
-                                    >Syllabi</span
-                                ></a
-                            >
-                        </li>
-                        <li>
-                            <a href="#"
-                                ><img src="Calendar.png" class="middle-logo" /><span class="logo-text"
-                                    >Calendar</span
-                                ></a
-                            >
-                        </li>
-                        <li>
-                            <a href="#"
-                                ><img src="Settings.png" class="middle-logo" /><span class="logo-text"
-                                    >Settings</span
-                                ></a
-                            >
-                        </li>
-                    </ul>
-                </div>
-                <div class="right-nav"><img src="#" class="username" /></div>
-            </nav>
+       <nav class="navbar">
+    <div class="nav-left">
+        <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+        <span class="brand">SyllaBuddy</span>
+    </div>
+
+    <ul class="nav-center">
+        <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+<a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+<a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+<a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
+    </ul>
+
+    <div class="nav-right">
+        <div class="profile-circle"></div>
+        <div class="profile-info">
+            <span class="profile-name">{{ session.get('username') }}</span>
+
+        </div>
+    </div>
+</nav>
         </header>
 
         <div class="account-manager">
@@ -254,4 +239,5 @@
             </div>
         </div>
     </body>
+
 </html>
