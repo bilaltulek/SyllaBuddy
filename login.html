@@ -225,10 +225,27 @@ input[type="password"]:focus {
 </head>
 <body>
     <header class="page-header">
-        <div class="logo-area">
-            <div class="logo"><!-- Replace the SVG in index.html with this <i> tag -->
-                <img src="Book open.png" alt="open-book-logo" id="open-book" /><span class="logo-text">Syllabuddy</span></div>
+ <nav class="navbar">
+    <div class="nav-left">
+        <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+        <span class="brand">SyllaBuddy</span>
+    </div>
+
+    <ul class="nav-center">
+        <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
+<a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
+<a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
+<a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
+    </ul>
+
+    <div class="nav-right">
+        <div class="profile-circle"></div>
+        <div class="profile-info">
+            <span class="profile-name">{{ session.get('username') }}</span>
+
         </div>
+    </div>
+</nav>
     </header>
 
     <div class="login-box">
@@ -253,4 +270,5 @@ input[type="password"]:focus {
         </form>
     </div>
 </body>
+
 </html>
