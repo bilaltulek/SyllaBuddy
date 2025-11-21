@@ -29,6 +29,13 @@
 
             /* Reset basic spacing and apply font */
             body {
+                margin: 0;      /* Removes the default 8px gap */
+    padding: 0;     /* Good practice to reset this too */
+    width: 100%;    /* Ensures the body fills the screen */
+
+    /* Your existing styles */
+    background-color: var(--color-page-bg);
+    font-family: "Inter", sans-serif;
                 font-family: "Inter", sans-serif;
                 margin: 0;
                 padding: 0;
@@ -47,14 +54,13 @@
                 display: grid;
                 grid-template-rows: auto 1fr; /* Header takes content height (auto), content area takes the rest (1fr) */
                 min-height: 100vh;
-                border-left: 1px solid #ddd; /* To simulate the subtle border seen in the image */
-                border-right: 1px solid #ddd;
+
             }
 
             .page-header {
                 background-color: var(--color-header-blue);
                 color: white;
-                padding: 15px 40px;
+
                 height: 60px; /* Fixed height for the banner */
                 box-sizing: border-box;
                 display: flex;
@@ -279,64 +285,72 @@
     {% endwith %}
     </head>
     <body>
-        <header class="page-header">
-            <nav class="navbar">
-        <div class="nav-left">
-            <img src="../static/assets/logo.svg" alt="Logo" class="logo">
-            <span class="brand">SyllaBuddy</span>
-        </div>
-
-        <ul class="nav-center">
-
-    <a href="{{ url_for('dashboard') }}"><img src="../static/assets/home.svg" class="icon"> Home</a>
-    <a href="{{ url_for('syllabi_page') }}"><img src="../static/assets/syllabi.svg" class="icon"> Syllabi</a>
-    <a href="{{ url_for('calendar_page') }}"><img src="../static/assets/calendar.svg" class="icon"> Calendar</a>
-    <a href="#"><img src="../static/assets/settings.svg" class="icon"> Settings</a>
-        </ul>
-
-        <div class="nav-right">
-            <div class="profile-circle"></div>
-            <div class="profile-info">
-                <span class="profile-name">
-                    {{ session.get('username', 'Guest') }}
-                </span>
-
+    <header class="page-header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="../static/assets/logo.svg" alt="Logo" class="logo">
+                <span class="brand">SyllaBuddy</span>
             </div>
-        </div>
-    </nav>
-        </header>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <div style="text-align: center; margin-bottom: 20px;">
-                {% for category, message in messages %}
-                    <div style="color: {{ 'red' if category == 'error' else 'green' }}; font-weight: bold;">
-                    {{ message }}
-                    </div>
-                {% endfor %}
+
+            <div class="nav-center">
+                <a href="{{ url_for('dashboard') }}">
+                    <img src="../static/assets/home.svg" class="icon"> Home
+                </a>
+                <a href="{{ url_for('syllabi_page') }}">
+                    <img src="../static/assets/syllabi.svg" class="icon"> Syllabi
+                </a>
+                <a href="{{ url_for('calendar_page') }}">
+                    <img src="../static/assets/calendar.svg" class="icon"> Calendar
+                </a>
+                <a href="#">
+                    <img src="../static/assets/settings.svg" class="icon"> Settings
+                </a>
             </div>
-            {% endif %}
-        {% endwith %}
-        <div class="login-box">
-            <h2>Create Account</h2>
 
-            <form action="{{ url_for('create_Account') }}" method="POST">
-                <div class="input-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required />
+            <div class="nav-right">
+                <div class="profile-circle"></div>
+                <div class="profile-info">
+                    <span class="profile-name">
+                        {{ session.get('username', 'Guest') }}
+                    </span>
                 </div>
+            </div>
+        </nav>
+    </header>
 
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required />
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div style="text-align: center; margin-top: 20px;">
+            {% for category, message in messages %}
+                <div style="color: {{ 'red' if category == 'error' else 'green' }}; font-weight: bold; padding: 10px;">
+                {{ message }}
                 </div>
-
-                <div class="input-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm_password" required />
-                </div>
-
-    <button type="submit" id="login-button">Sign Up</button>
-</form>
+            {% endfor %}
         </div>
-    </body>
+        {% endif %}
+    {% endwith %}
+
+    <div class="login-box">
+        <h2 class="login-title">Create Account</h2>
+
+        <form action="{{ url_for('create_Account') }}" method="POST">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" required />
+            </div>
+
+            <button type="submit" id="login-button">Sign Up</button>
+        </form>
+    </div>
+</body>
 </html>

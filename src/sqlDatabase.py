@@ -149,10 +149,7 @@ class dbManager:
             return pdf_data
 
     def close(self):
-        """
-        Closes the database connection.
-        This is the method your teardown function in apiClass.py will call.
-        """
+
         if self.conn:
             self.conn.close()
 
