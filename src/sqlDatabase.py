@@ -4,7 +4,7 @@ import webbrowser
 import sys
 import array
 import json
-
+#Not all functions will work i have the minimum to run the website working, anything else is not guaranteed
 class dbManager:
     classVar =" "
     def __init__(self, dbName, tableName):

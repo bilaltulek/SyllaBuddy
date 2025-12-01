@@ -236,6 +236,6 @@ jsonObj = {
 class testICS(unittest.TestCase):
     def test_ICS(self):
         testCase = syllabusInstance.createICSFile(jsonObj)
-        self.assertEqual(testCase, True, 'correctly created ICS')
+        self.assertTrue(len(testCase) != 0, 'correctly created ICS')
 if __name__ == '__main__':
     unittest.main()

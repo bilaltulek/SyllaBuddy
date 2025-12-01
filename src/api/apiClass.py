@@ -5,11 +5,10 @@ import fitz
 import os
 import io
 from sqlDatabase import dbManager
-from flask import Flask, g, request, jsonify, send_file, abort
+from flask import  g, jsonify, abort
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
-from flask import render_template, flash
-from flask import Flask, send_file
+from flask import send_file
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from parsingBilal import parsing
 from syllabusClass import *
@@ -26,7 +25,7 @@ TableNameUsers = 'usersTable'
 
 
 
-UPLOAD_FOLDER = 'tempDir    '
+UPLOAD_FOLDER = '/tempDir'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -70,7 +69,6 @@ def login_required(f):
 
 @app.route('/')
 def index():
-    # Directs the root URL (http://localhost:5000/) straight to the Welcome Page
     return redirect(url_for('welcome_Page'))
 
 
@@ -196,7 +194,10 @@ def uploadPDF():
         if os.path.exists(tempPath):
             os.remove(tempPath)
             print(f"Cleaned up temporary file: {tempPath}")
-        return jsonify({"message": f"File '{filename}' received, processed via path, and stored successfully!"}), 201
+        flash(f"File '{filename}' stored successfully!", 'success')
+
+
+        return redirect(url_for('upload_page'))
 
 
 

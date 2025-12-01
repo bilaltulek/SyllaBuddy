@@ -40,14 +40,7 @@ def parsing(pdf_data: bytes):
 
     print(f"Created temporary PDF at: {temp_file_path}")
 
-    #"""
-    #with open(output_filename, 'wb') as f:
-    #    f.write(pdf_data)
-    #file_url = f'file://{os.path.realpath(output_filename)}'
-#
-    #with open(pdf_url, "rb") as f:
-    #    pdf_data = f.read()
-    #"""
+
     script_dir = Path(__file__).parent
     env_path = script_dir / '.env'
     load_result = load_dotenv(env_path)
